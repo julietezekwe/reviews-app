@@ -13,6 +13,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static(path.join(__dirname, 'public')));
 
+dotenv.config();
 
 app.use((req, res, next)=>{
 res.locals.errors = null;
@@ -69,14 +70,14 @@ app.post('/process/url', (req, res) => {
     // console.log(placeCord);
     
     let place_Id;
-    var url4 = `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${placeName}&inputtype=textquery&fields=place_id&locationbias=circle:2000@${placeCord}&key=AIzaSyB08GyWMugkWe4mL-w_TdGrxhy79-8_gIo`;
+    var url4 = `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${placeName}&inputtype=textquery&fields=place_id&locationbias=circle:2000@${placeCord}&key=${process.env.API_KEY}`;
   
   
     axios.get(url4)
     .then(function(response) {
       place_Id = response.data.candidates[0].place_id;
   
-      var placeReview = `https://maps.googleapis.com/maps/api/place/details/json?placeid=${place_Id}&key=AIzaSyB08GyWMugkWe4mL-w_TdGrxhy79-8_gIo`;
+      var placeReview = `https://maps.googleapis.com/maps/api/place/details/json?placeid=${place_Id}&key=${process.env.API_KEY}`;
         axios.get(placeReview)
           .then(function(response) {
             let data = response.data.result.reviews;
@@ -105,7 +106,7 @@ app.post('/process/url', (req, res) => {
   }
 });
 
-const port = parseInt(process.env.PORT, 10) || 8000;
+const port = parseInt(process.env.PORT, 10) || 8001;
 
 app.listen(port, ()=> {
     console.log(`Server started on port: ${port}`);
