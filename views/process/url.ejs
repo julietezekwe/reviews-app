@@ -3,7 +3,35 @@
         <h1>view review</h1>
         
        
-        
+        <% if (data != undefined){ %>
+            
+            <table class="table table-bordered" id="myTable" >
+                
+                    <tr>
+                      <th>Name</th>
+                      <th>Rating</th>
+                      <th>Reviewed</th>
+                      <th>comment</th>
+                      <th>url</th>
+                     
+                    </tr>
+                <% data.forEach( (review) => { %>
+            
+                    <tr>
+                        <td><%=review.author_name%></td>
+                        <td><%=review.rating%></td>
+                        <td><%=review.relative_time_description%></td>
+                        <td><%=review.text%></td>
+                        <td><%=review.author_url%></td>
+                       
+                    </tr>
+                
+                <% }); %>
+            </table>
+           <% } %>
+       <a href="/"><button class="btn btn-lg success" >back to form</button></a> 
+       <button class="btn btn-lg primary"  onclick="exportTableToCSV('reviews.csv')">Export Review To CSV File</button>
+  
  </div>
     
  
