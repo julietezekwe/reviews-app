@@ -10,8 +10,10 @@
     "start:dev": "nodemon --exec babel-node app.js"
   },
   "dependencies": {
-   
+    "ejs": "^2.6.1",
     "express": "*"
+   
+    
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
