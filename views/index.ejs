@@ -1,7 +1,39 @@
 <% include partials/header %>
   <div class="container">
 
-    
+    <br><br><br>
+        <% if (errors != undefined){ %>
+           
+                <% errors.forEach( (error) => { %>
+                <div class="alert alert-danger"> <%= error.msg %></div>
+                <% }) %>
+          
+           <% } %>
+           
+        
+          <div class="row">
+                <div class="col-sm-offset-2 col-sm-10">
+                        <h1>welcome</h1>
+                        <p>Please enter the url of the site you want the review to be downloaded in the form</p>
+                </div>
+          </div>
+          <br><br>
+          <form class="form-horizontal" action="process/url" method="POST">
+            <div class="form-group">
+              <label class="control-label col-sm-2" for="url">URL:</label>
+              <div class="col-sm-10">
+                <input type="url" class="form-control" name="url" id="url" placeholder="Enter site address">
+              </div>
+            </div>
+            
+            <div class="form-group"> 
+              <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-default">Submit</button>
+              </div>
+            </div>
+          </form>
+          
+        
   </div>
   
 
