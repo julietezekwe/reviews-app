@@ -65,9 +65,10 @@ app.post('/process/url', (req, res) => {
     if(url.split('/').length == 8){
       let placeName = url.split('/')[5];
       let placeCord = url.split('/')[6];
-      placeCord = placeCord.slice(1,23);
+      placeCord = placeCord.slice(1,-4);
+      
     // console.log(placeName);
-    // console.log(placeCord);
+    console.log(placeCord);
     
     let place_Id;
     var url4 = `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${placeName}&inputtype=textquery&fields=place_id&locationbias=circle:2000@${placeCord}&key=${process.env.API_KEY}`;
